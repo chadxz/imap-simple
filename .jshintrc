@@ -1,0 +1,15 @@
+{
+  "node": true,
+  "latedef": true,
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "mocha": true,
+  "predef": [
+    "-Promise"
+  ],
+  "globals": {
+    "xit": true,
+    "xdescribe": true
+  }
+}

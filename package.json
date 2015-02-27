@@ -1,0 +1,33 @@
+{
+  "name": "imap-simple",
+  "version": "1.0.0",
+  "description": "Wrapper over node-imap, providing a simpler api for common use cases",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "jscs . && jshint .",
+    "cover": "istanbul cover --report html _mocha"
+  },
+  "keywords": [
+    "imap",
+    "node-imap"
+  ],
+  "author": "Chad McElligott <cmcelligott@digium.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chadxz/imap-simple.git"
+  },
+  "dependencies": {
+    "es6-promise": "^2.0.1",
+    "imap": "^0.8.14",
+    "nodeify": "^1.0.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.6",
+    "mocha": "^2.1.0",
+    "chai": "^2.1.0",
+    "jscs": "^1.11.3",
+    "jshint": "^2.6.0"
+  }
+}
