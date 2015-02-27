@@ -81,12 +81,14 @@ search+fetch operation, either the provided callback will be called with signatu
 promise will be resolved with `results`. The format of `results` is detailed below. See node-imap's *ImapMessage*
 signature for information about `attributes`, `which`, `size`, and `body`. For any message part that is a `HEADER`, the
 body is automatically parsed into an object.
-```js
-    // [{
-    //      attributes: object,
-    //      parts: [ { which: string, size: number, body: string }, ... ]
-    //  }, ...]
-```
+    ```js
+        // [{
+        //      attributes: object,
+        //      parts: [ { which: string, size: number, body: string }, ... ]
+        //  }, ...]
+    ```
+
+- **end**() - *undefined* - Close the connection to the imap server.
 
 ##Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
