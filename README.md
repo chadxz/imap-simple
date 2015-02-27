@@ -88,7 +88,17 @@ body is automatically parsed into an object.
     //  }, ...]
 ```
 
+##Contributing
+Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
+supported, please feel free to add, but be sure to follow the patterns established thus far, mostly:
 
+- support promises **AND** callbacks
+- make your api as simple as possible
+- don't worry about exposing implementation details of [node-imap][] when needed
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more details about contributing.
+
+##License
+[MIT](LICENSE-MIT)
 
 [node-imap]: https://github.com/mscdex/node-imap
