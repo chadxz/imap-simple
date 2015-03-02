@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.2.0 - 2015-03-02
+### Added
+ - made *ImapSimple* an event emitter
+
 ## 1.1.2 - 2015-03-02
 ### Fixed
  - Put ECONNRESET error in better place, and only ignored error when calling .end()
