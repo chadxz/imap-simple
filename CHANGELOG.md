@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.3.1 - 2015-03-04
+### Fixed
+ - fixed `connect()` option `imap.authTimeout` default not being properly set.
+
 ## 1.3.0 - 2015-03-04
 ### Removed
  - removed `options.connectTimeout`. Support has remained for backwards compatibility, but the recommended
