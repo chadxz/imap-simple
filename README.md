@@ -15,9 +15,9 @@ var config = {
         password: 'yourpassword',
         host: 'imap.gmail.com',
         port: 993,
-        tls: true
-    },
-    connectTimeout: 3000
+        tls: true,
+        authTimeout: 3000
+    }
 };
 
 imaps.connect(config).then(function (connection) {
@@ -59,7 +59,8 @@ times out, either the callback will be called with the `err` property set to an 
 the returned promise will be rejected with the same. Valid `options` properties are:
 
     - **imap**: Options to pass to node-imap constructor 1:1
-    - **connectTimeout**: Time in milliseconds to wait before giving up on a connection attempt
+    - **connectTimeout**: Time in milliseconds to wait before giving up on a connection attempt. *(Deprecated: please
+    use `options.imap.authTimeout` instead)*
 
 - **ImapSimple**(<*object*> imap) - *ImapSimple* - constructor for creating an instance of ImapSimple. Mostly used for
 testing.

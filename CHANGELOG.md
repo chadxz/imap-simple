@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.3.0 - 2015-03-04
+### Removed
+ - removed `options.connectTimeout`. Support has remained for backwards compatibility, but the recommended
+ option for setting a connection timeout moving forward is `options.imap.authTimeout`. Support for
+ `options.connectTimeout` will be removed on the next major release.
+
 ## 1.2.0 - 2015-03-02
 ### Added
  - made *ImapSimple* an event emitter

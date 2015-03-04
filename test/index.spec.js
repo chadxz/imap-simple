@@ -12,9 +12,9 @@ describe("imap-simple", function () {
                 password: 'FILL THIS IN',
                 host: 'imap.gmail.com',
                 port: 993,
-                tls: true
-            },
-            connectTimeout: 3000
+                tls: true,
+                authTimeout: 3000
+            }
         };
 
         return imaps.connect(config).then(function (connection) {
