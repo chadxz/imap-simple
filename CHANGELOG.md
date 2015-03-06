@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.3.2 - 2015-03-06
+### Fixed
+ - fixed property used to determine whether an error was an authTimeout
+
 ## 1.3.1 - 2015-03-04
 ### Fixed
  - fixed `connect()` option `imap.authTimeout` default not being properly set.
