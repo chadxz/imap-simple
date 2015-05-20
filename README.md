@@ -1,10 +1,10 @@
-#imap-simple
+# imap-simple
 
 A library providing a simpler interface for common use cases of [node-imap][], a robust imap client for node.js.
 
 This library is only currently fleshed out for the use case of retrieving email from an imap server.
 
-###Example:
+### Example:
 
 ```js
 var imaps = require('imap-simple');
@@ -49,9 +49,9 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
-##API
+## API
 
-###Exported module
+### Exported module
 - **connect**(<*object*> options, [<*function*> callback]) - *Promise* - Main entry point. Connect to an Imap server.
 Upon successfully connecting to the Imap server, either calls the provided callback with signature `(err, connection)`,
 or resolves the returned promise with `connection`, where `connection` is an instance of *ImapSimple*. If the connection
@@ -69,7 +69,7 @@ testing.
 attempt has timed out.
 
 
-###ImapSimple class
+### ImapSimple class
 
 - **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox. If successful, either calls the
 provided callback with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
@@ -91,7 +91,7 @@ body is automatically parsed into an object.
 
 - **end**() - *undefined* - Close the connection to the imap server.
 
-##Contributing
+## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
 supported, please feel free to add, but be sure to follow the patterns established thus far, mostly:
 
