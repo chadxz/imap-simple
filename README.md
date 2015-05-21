@@ -49,6 +49,42 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
+### Downloading attachments
+
+```js
+IMAP.connect(config).then(function(connection) {
+    connection.openBox('INBOX').then(function() {
+        // Fetch emails from the last 24h
+        var delay = 24 * 3600 * 1000;
+        var yesterday = new Date();
+        yesterday.setTime(Date.now() - delay);
+        yesterday = yesterday.toISOString();
+        var searchCriteria = ['UNSEEN', ['SINCE', yesterday]];
+        var fetchOptions = {bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)'], struct: true};
+        return connection.search(searchCriteria, fetchOptions);
+    }).then(function(messages) {
+        function downloadAttachment(message, part) {
+            return connection.getPartData(message, part)
+                .then(function(partData) {
+                     console.log(part.disposition.params.filename + ': got ' + partData.length + ' bytes');
+                });
+        }
+
+        var attachments = [];
+        for (var i = 0; i < messages.length; i++) {
+	    var parts = IMAP.getParts(messages[i].attributes.struct);
+            for (var j = 0; j < parts.length; j++)
+                if (parts[j].disposition && parts[j].disposition.type == 'ATTACHMENT')
+                    attachments.push(downloadAttachment(messages[i], parts[j]));
+	}
+
+        return Promise.all(attachments);
+    }).then(function() {
+        console.log('Done!');
+    });
+});
+```
+
 ## API
 
 ### Exported module
@@ -90,6 +126,9 @@ body is automatically parsed into an object.
     ```
 
 - **end**() - *undefined* - Close the connection to the imap server.
+
+- **getPartData**(<*object*> message, <*object*> part) - *Promise* - Downloads part data (which is either the message
+body, or an attachment)
 
 ## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
