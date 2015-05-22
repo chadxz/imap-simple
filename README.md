@@ -4,7 +4,9 @@ A library providing a simpler interface for common use cases of [node-imap][], a
 
 This library is only currently fleshed out for the use case of retrieving email from an imap server.
 
-### Example:
+### Examples
+
+#### Retrieve the subject lines of all unread email
 
 ```js
 var imaps = require('imap-simple');
@@ -49,38 +51,62 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
-### Downloading attachments
+#### Download all attachments from all unread email since yesterday
 
 ```js
-IMAP.connect(config).then(function(connection) {
-    connection.openBox('INBOX').then(function() {
+var imaps = require('imap-simple');
+
+var config = {
+    imap: {
+        user: 'your@email.address',
+        password: 'yourpassword',
+        host: 'imap.gmail.com',
+        port: 993,
+        tls: true,
+        authTimeout: 3000
+    }
+};
+
+imaps.connect(config).then(function (connection) {
+
+    connection.openBox('INBOX').then(function () {
+
         // Fetch emails from the last 24h
         var delay = 24 * 3600 * 1000;
         var yesterday = new Date();
         yesterday.setTime(Date.now() - delay);
         yesterday = yesterday.toISOString();
         var searchCriteria = ['UNSEEN', ['SINCE', yesterday]];
-        var fetchOptions = {bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)'], struct: true};
+        var fetchOptions = { bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)'], struct: true };
+
+        // retrieve only the headers of the messages
         return connection.search(searchCriteria, fetchOptions);
-    }).then(function(messages) {
-        function downloadAttachment(message, part) {
-            return connection.getPartData(message, part)
-                .then(function(partData) {
-                     console.log(part.disposition.params.filename + ': got ' + partData.length + ' bytes');
-                });
-        }
+    }).then(function (messages) {
 
         var attachments = [];
-        for (var i = 0; i < messages.length; i++) {
-	    var parts = IMAP.getParts(messages[i].attributes.struct);
-            for (var j = 0; j < parts.length; j++)
-                if (parts[j].disposition && parts[j].disposition.type == 'ATTACHMENT')
-                    attachments.push(downloadAttachment(messages[i], parts[j]));
-	}
+
+        messages.forEach(function (message) {
+            var parts = imaps.getParts(message.attributes.struct);
+            attachments = attachments.concat(parts.filter(function (part) {
+                return part.disposition && part.disposition.type === 'ATTACHMENT';
+            }).map(function (part) {
+                // retrieve the attachments only of the messages with attachments
+                return connection.getPartData(message, part)
+                    .then(function (partData) {
+                        return {
+                            filename: part.disposition.params.filename,
+                            data: partData
+                        };
+                    });
+            }));
+        });
 
         return Promise.all(attachments);
-    }).then(function() {
-        console.log('Done!');
+    }).then(function (attachments) {
+        console.log(attachments);
+        // =>
+        //    [ { filename: 'cats.jpg', data: Buffer() },
+        //      { filename: 'pay-stub.pdf', data: Buffer() } ]
     });
 });
 ```
@@ -104,6 +130,9 @@ testing.
 - **errors.ConnectionTimeoutError**(<*number*> timeout) - *ConnectionTimeoutError* - Error thrown when a connection
 attempt has timed out.
 
+- **getParts**(<*Array*> struct) - *Array* - Given the `message.attributes.struct`, retrieve a flattened array of `parts`
+objects that describe the structure of the different parts of the message's body. Useful for getting a simple list to
+iterate for the purposes of, for example, finding all attachments.
 
 ### ImapSimple class
 
@@ -127,8 +156,10 @@ body is automatically parsed into an object.
 
 - **end**() - *undefined* - Close the connection to the imap server.
 
-- **getPartData**(<*object*> message, <*object*> part) - *Promise* - Downloads part data (which is either the message
-body, or an attachment)
+- **getPartData**(<*object*> message, <*object*> part, [<*function*> callback]) - *Promise* - Downloads part data
+(which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
+with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
+decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
 
 ## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
