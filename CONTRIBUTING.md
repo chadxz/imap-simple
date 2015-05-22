@@ -1,51 +1,30 @@
 # Contributing
 
-We love pull requests. Here's a quick guide.
+This project is **OPEN** open source
 
-**note: this project doesn't really have tests yet. Once it does, the *test* steps below will be more applicable.**
+### What?
 
+Individuals making significant and valuable contributions are given commit-access to the project to contribute as they
+see fit.
 
-Fork, then clone the repo:
+### Rules
 
-```
-git clone git@github.com:your-username/imap-simple.git
-```
+There are a few basic ground-rules for contributors:
 
-Install the node modules:
+1. **No `--force` pushes** or modifying the git history in any way.
+1. **Non-master branches** ought to be used for ongoing work.
+1. **External API changes and significant modifications** ought to be subject to an **internal pull-request** to solicit
+feedback from other contributors.
+1. Internal pull-requests to solicit feedback are *encouraged* for any other non-trivial contribution but left to the
+discretion of the contributor.
+1. Contributors should attempt to adhere to the prevailing code-style.
 
-```
-npm install
-```
+### Releases
 
-Make sure the tests pass:
+Declaring formal releases remains the prerogative of the project maintainer(s).
 
-```
-npm test
-```
+### Changes to this arrangement
 
-Make your change. Add tests for your change. Make the tests pass:
+This is an experiment and feedback is welcome! This document may also be subject to pull-requests or changes by contributors where you believe you have something valuable to add or change.
 
-```
-npm test
-```
-
-Ensure that you are following the style guide and coding conventions enforced by jshint and jscs:
-
-```
-npm run lint
-```
-
-Add a line to [the changelog](CHANGELOG.md) under "Unreleased" that describes the change you made. If you aren't familiar with
-the best way to format your entry, see [keepachangelog.com](http://keepachangelog.com)
-
-Push to your fork and [submit a pull request](https://github.com/chadxz/waterline-custom-validations/compare/).
-
-At this point you're waiting on us. We like to at least comment on pull requests
-within three business days (and, typically, one business day). We may suggest
-some changes or improvements or alternatives.
-
-Some things that will increase the chance that your pull request is accepted:
-
- - Write tests.
- - Lint your code with jshint + jscs.
- - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+*OPEN open source inspired by the [level](https://github.com/Level/community/blob/master/CONTRIBUTING.md) community*

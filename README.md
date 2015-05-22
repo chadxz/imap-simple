@@ -99,9 +99,16 @@ supported, please feel free to add, but be sure to follow the patterns establish
 - make your api as simple as possible
 - don't worry about exposing implementation details of [node-imap][] when needed
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for more details about contributing.
+This project is **OPEN** open source. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details about contributing.
 
-##License
+## Semver
+This project follows [semver](http://semver.org/). Namely:
+
+- new MAJOR versions when incompatible API changes are made,
+- new MINOR versions for backwards-compatible feature additions,
+- new PATCH versions for backwards-compatible bug fixes
+
+## License
 [MIT](LICENSE-MIT)
 
 [node-imap]: https://github.com/mscdex/node-imap
