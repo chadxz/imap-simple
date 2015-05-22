@@ -12,7 +12,10 @@
     "imap",
     "node-imap"
   ],
-  "author": "Chad McElligott <cmcelligott@digium.com>",
+  "contributors": [
+    "Chad McElligott <chad.mcelligott@gmail.com>",
+    "Erik Bernhardsson <erikbern@spotify.com>"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
