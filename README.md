@@ -82,6 +82,14 @@ imaps.connect(config).then(function (connection) {
         // retrieve only the headers of the messages
         return connection.search(searchCriteria, fetchOptions);
     }).then(function (messages) {
+        function downloadAttachment(message, part) {
+            return connection.getPartData(message, part)
+                .then(function(partData) {
+                     console.log(part.disposition.params.filename + ': got ' + partData.length + ' bytes');
+                     // Add message label
+                     connection.addMessageLabel(message.attributes.uid, 'downloaded');
+                });
+        }
 
         var attachments = [];
 
@@ -160,6 +168,10 @@ body is automatically parsed into an object.
 (which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
 with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
 decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
+
+- **addMessageLabel**(<*object*> messageId, <*object*> label) - *Promise* - Adds label to message
+
+- **moveMessage**(<*object*> messageId, <*object*> label) - *Promise* - Move message to another box
 
 ## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
