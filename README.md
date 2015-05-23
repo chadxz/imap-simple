@@ -83,14 +83,6 @@ imaps.connect(config).then(function (connection) {
         // retrieve only the headers of the messages
         return connection.search(searchCriteria, fetchOptions);
     }).then(function (messages) {
-        function downloadAttachment(message, part) {
-            return connection.getPartData(message, part)
-                .then(function(partData) {
-                     console.log(part.disposition.params.filename + ': got ' + partData.length + ' bytes');
-                     // Add message label
-                     connection.addMessageLabel(message.attributes.uid, 'downloaded');
-                });
-        }
 
         var attachments = [];
 
