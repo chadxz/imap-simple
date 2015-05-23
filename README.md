@@ -2,7 +2,8 @@
 
 A library providing a simpler interface for common use cases of [node-imap][], a robust imap client for node.js.
 
-This library is only currently fleshed out for the use case of retrieving email from an imap server.
+**Warning**: This library is missing a great deal of functionality from node-imap. If you have functionality you would
+like to see, we're accepting pull requests!
 
 ### Examples
 
@@ -144,8 +145,8 @@ iterate for the purposes of, for example, finding all attachments.
 
 ### ImapSimple class
 
-- **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox. If successful, either calls the
-provided callback with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
+- **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox, calling the provided callback
+with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **search**(<*object*> searchCriteria, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Search for and
 retrieve mail in the previously opened mailbox. The search is performed based on the provided `searchCriteria`, which is
@@ -169,9 +170,15 @@ body is automatically parsed into an object.
 with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
 decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
 
-- **addMessageLabel**(<*object*> messageId, <*object*> label) - *Promise* - Adds label to message
+- **addMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Adds the provided
+label(s) to the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
+to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
 
-- **moveMessage**(<*object*> messageId, <*object*> label) - *Promise* - Move message to another box
+- **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
+message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
+specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
+resolves the returned promise.
 
 ## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
