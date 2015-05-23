@@ -1,12 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.5.0 - 2015-05-22
+### Added
+ - added `addMessageLabel` and `moveMessage` wrapper methods to ImapSimple class
+
 ## 1.4.0 - 2015-05-22
 ### Added
  - added `getParts` to module export and `getPartData` to ImapSimple class
+
 ### Fixed
  - fixed strange bug where header was sometimes not being parsed
-
 
 ## 1.3.2 - 2015-03-06
 ### Fixed
