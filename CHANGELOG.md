@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.5.1 - 2015-12-04
+### Fixed
+ - fixed incompatible use of all upper-case encoding name, instead of treating
+   the encoding as case-insensitive.
+
 ## 1.5.0 - 2015-05-22
 ### Added
  - added `addMessageLabel` and `moveMessage` wrapper methods to ImapSimple class
