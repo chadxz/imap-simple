@@ -1,6 +1,6 @@
 {
   "name": "imap-simple",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Wrapper over node-imap, providing a simpler api for common use cases",
   "main": "index.js",
   "scripts": {
