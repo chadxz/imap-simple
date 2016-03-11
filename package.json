@@ -1,6 +1,6 @@
 {
   "name": "imap-simple",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Wrapper over node-imap, providing a simpler api for common use cases",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "Chad McElligott <chad.mcelligott@gmail.com>",
     "Erik Bernhardsson <erikbern@spotify.com>",
     "Nate Watson <watsonn2013@my.fit.edu>",
-    "Julian Bilcke <julian.bilcke@gmail.com>"
+    "Julian Bilcke <julian.bilcke@gmail.com>",
+    "Bruce V. Schwartz <bruce@z2a.org>"
   ],
   "license": "MIT",
   "repository": {

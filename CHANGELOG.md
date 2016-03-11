@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.0 - 2016-03-11
+
+#### Added
+
+- \#9 - @bvschwartz - `getPartData` is now using [iconv-lite][iconv-lite] to automatically
+    decode message parts with an '8BIT' encoding, with a default 'utf-8' encoding set.
+
+[iconv-lite]: https://github.com/ashtuchkin/iconv-lite
+
 ## 1.5.2 - 2016-02-04
 
 #### Fixed
