@@ -27,7 +27,8 @@
     "es6-promise": "^2.0.1",
     "imap": "^0.8.14",
     "nodeify": "^1.0.0",
-    "quoted-printable": "^1.0.0"
+    "quoted-printable": "^1.0.0",
+    "iconv-lite": "~0.4.13"
   },
   "devDependencies": {
     "istanbul": "^0.3.6",
