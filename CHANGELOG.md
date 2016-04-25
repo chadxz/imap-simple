@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.1 - 2016-04-25
+
+#### Fixed
+
+- \#10 - @tuomastanner - fixed issue with decoding utf8 parts, specifically with
+    respect to interacting with gmail.
+
+
 ## 1.6.0 - 2016-03-11
 
 #### Added
