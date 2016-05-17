@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.2 - 2016-05-17
+
+- \#11 - @nytr0gen - Library will now reject properly when a close or end event
+    is received when trying to connect.
+
 ## 1.6.1 - 2016-04-25
 
 #### Fixed
