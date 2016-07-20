@@ -1,6 +1,6 @@
 {
   "name": "imap-simple",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Wrapper over node-imap, providing a simpler api for common use cases",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "Robert Vulpe <nytr0gen.george@gmail.com>",
     "Julian Bilcke <julian.bilcke@gmail.com>",
     "Bruce V. Schwartz <bruce@z2a.org>",
-    "Tuomas Tanner"
+    "Tuomas Tanner",
+    "John Kawakami <jkawakami@ebullient.net>"
   ],
   "license": "MIT",
   "repository": {
