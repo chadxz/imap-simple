@@ -28,18 +28,18 @@
     "url": "https://github.com/chadxz/imap-simple.git"
   },
   "dependencies": {
-    "es6-promise": "^2.0.1",
+    "es6-promise": "^4.0.3",
     "iconv-lite": "~0.4.13",
-    "imap": "^0.8.14",
+    "imap": "^0.8.18",
     "nodeify": "^1.0.0",
     "quoted-printable": "^1.0.0",
     "utf8": "^2.1.1"
   },
   "devDependencies": {
-    "istanbul": "^0.3.6",
-    "mocha": "^2.1.0",
-    "chai": "^2.1.0",
-    "jscs": "^1.11.3",
-    "jshint": "^2.6.0"
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.3",
+    "mocha": "^3.1.0"
   }
 }
