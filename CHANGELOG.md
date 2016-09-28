@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.0 - 2016-09-28
+
+Updated dependencies.
+
+### Changed
+
+- The `es6-promise` module has changed its scheduler from `setImmediate()` to
+`nextTick()` on Node 0.10. This directly affects this module's promise API,
+so the major version has been bumped to indicate this. See
+[the es6-promise changelog](https://github.com/stefanpenner/es6-promise/blob/master/CHANGELOG.md#300)
+for more details about the change.
+
 ## 1.6.3 - 2016-07-20
 
 #### Fixed
