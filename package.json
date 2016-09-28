@@ -30,7 +30,7 @@
   "dependencies": {
     "es6-promise": "^2.0.1",
     "iconv-lite": "~0.4.13",
-    "imap": "^0.8.14",
+    "imap": "^0.8.18",
     "nodeify": "^1.0.0",
     "quoted-printable": "^1.0.0",
     "utf8": "^2.1.1"
