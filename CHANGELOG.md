@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - 2016-10-26
+
+#### Fixed
+
+- The ConnectionTimeoutError previously had its name set to 'BaseUrlNotSetError'.
+This version fixes that, but since the error was part of the library's public API
+and the name is technically something people could code against, the version has
+received a major bump.
+
 ## 2.0.0 - 2016-09-28
 
 Updated dependencies.
