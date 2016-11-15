@@ -172,6 +172,42 @@ message(s) in the currently open mailbox to another mailbox. `source` correspond
 specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
 resolves the returned promise.
 
+- **addFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Adds the provided
+flag(s) to the specified message(s). `uid` is the *uid* of the message you want to add the flag to or an array of
+*uids*. `flag` is either a string or array of strings indicating the flags to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+- **delFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Removes the provided
+flag(s) from the specified message(s). `uid` is the *uid* of the message you want to remove the flag from or an array of
+*uids*. `flag` is either a string or array of strings indicating the flags to remove. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+## Server events
+Functions to listen to server events are configured in the configuration object that is passed to the `connect` function.
+The
+ImapSimple only implements a subset of the server event functions *node-imap* supports
+,[see here](https://github.com/mscdex/node-imap#connection-events), which are `mail`, `expunge` and `update`.
+Add them to the configuration object as follows:
+
+```
+var config = {
+    imap: {
+        ...
+    },
+    onmail: (numNewMail) => {
+      ...
+    },
+    onexpunge: (seqno) => {
+        ...
+    },
+    onupdate: (seqno, info) => {
+        ...
+    }
+};
+```
+
+For more information [see here](https://github.com/mscdex/node-imap#connection-events).
+
 ## Contributing
 Pull requests welcome! This project really needs tests, so those would be very welcome. If you have a use case you want
 supported, please feel free to add, but be sure to follow the patterns established thus far, mostly:
