@@ -194,13 +194,13 @@ var config = {
     imap: {
         ...
     },
-    onmail: (numNewMail) => {
+    onmail: function (numNewMail) {
       ...
     },
-    onexpunge: (seqno) => {
+    onexpunge: function (seqno) {
         ...
     },
-    onupdate: (seqno, info) => {
+    onupdate: function (seqno, info) {
         ...
     }
 };
