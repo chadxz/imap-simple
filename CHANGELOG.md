@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.1.0 - 2016-11-15
+
+#### Added
+
+- #19 - @redpandatronicsuk
+    - Added wrapper functions to add and delete flags from messages.
+    - Added event listeners and corresponding options for listening for receiving
+    new mails, message updates (such as flag changes) and external message delete
+    events.
+    - Added `seqno` property to retrieved messages, so the message can be
+    correlated to received events.
+
 ## 3.0.0 - 2016-10-26
 
 #### Fixed
