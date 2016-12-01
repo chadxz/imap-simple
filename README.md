@@ -89,7 +89,7 @@ imaps.connect(config).then(function (connection) {
         messages.forEach(function (message) {
             var parts = imaps.getParts(message.attributes.struct);
             attachments = attachments.concat(parts.filter(function (part) {
-                return part.disposition && part.disposition.type === 'ATTACHMENT';
+                return part.disposition && part.disposition.type.toUpperCase() === 'ATTACHMENT';
             }).map(function (part) {
                 // retrieve the attachments only of the messages with attachments
                 return connection.getPartData(message, part)
