@@ -2,10 +2,10 @@
 var expect = require("chai").expect;
 
 
-describe("imap-simple", function () {
+describe("encoding", function () {
     var getEncoding = require("../lib/helpers/encoding");
 
-    it("correct encoding is found ", function () {
+    it("correct encoding is found", function () {
         expect(getEncoding({ 'content-type': [ 'text/plain; charset="iso-8859-1"' ] })).to.equal('iso-8859-1');
         expect(getEncoding({})).to.equal('utf8');
     });
