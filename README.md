@@ -112,6 +112,34 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
+### Append a message to your drafts folder
+
+```js
+var imaps = require('imap-simple');
+
+var config = {
+    imap: {
+        user: 'your@email.address',
+        password: 'yourpassword',
+        host: 'imap.gmail.com',
+        port: 993,
+        tls: true,
+        authTimeout: 3000
+    }
+};
+
+imaps.connect(config).then(function (connection) {
+  const message = `Content-Type: text/plain
+To: jhannes@gmail.com
+Subject: Hello world
+
+Hi
+This is a test message
+`;
+  connection.append(message.toString(), {mailbox: 'Drafts', flags: '\\Draft'});
+});
+```
+
 ## API
 
 ### Exported module
@@ -170,6 +198,10 @@ the provided callback with signature `(err)`, or resolves the returned promise.
 - **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
 message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
 specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
+resolves the returned promise.
+
+- **append**(<*mixed*> message, <*object*> options, [<*function*> callback]) - *Promise* - Appends the argument
+message to the currently open mailbox to another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options` are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or
 resolves the returned promise.
 
 - **addFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Adds the provided
