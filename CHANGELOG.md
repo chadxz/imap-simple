@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.2.0 - 2017-08-21
+
+#### Added
+
+- #41 - @jhannes
+    - Added wrapper function `append` on the connection object to append a message
+    to a mailbox.
+
 ## 3.1.0 - 2016-11-15
 
 #### Added
