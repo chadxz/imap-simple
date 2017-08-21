@@ -200,8 +200,8 @@ message(s) in the currently open mailbox to another mailbox. `source` correspond
 specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
 resolves the returned promise.
 
-- **append**(<*mixed*> message, <*object*> options, [<*function*> callback]) - *Promise* - Appends the argument
-message to the currently open mailbox to another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options` are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or
+- **append**(<*mixed*> message, [<*object*> options], [<*function*> callback]) - *Promise* - Appends the argument
+message to the currently open mailbox or another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options` are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or
 resolves the returned promise.
 
 - **addFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Adds the provided
