@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.0 - 2018-01-09
+
+Between v3.1.0 and v3.2.0 #29 was merged to remove the `es6-promise` library from
+this package's dependencies, but was never released as it was a semver major change.
+
+Later, #41 was merged to add a new feature. #29 had been forgotten about, and
+v3.2.0 (a semver-minor release) was issued for the library.
+
+Because v3.2.0 contained breaking changes for users of the library on versions
+of Node that don't include Promise support, we marked it as deprecated on the
+npm registry and are issuing this 4.0.0 release as the current recommended
+version.
+
+Sorry :(
+
 ## 3.2.0 - 2017-08-21
 
 #### Added
