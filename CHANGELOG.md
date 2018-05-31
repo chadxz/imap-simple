@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.1.0 - 2018-05-31
+
+#### Added
+
+- #47 - @AurisAudentis
+    - Added `ImapSimple.prototype.getBoxes()` as a wrapper around the same-named
+    function in the underlying node-imap library.
+
 ## 4.0.0 - 2018-01-09
 
 Between v3.1.0 and v3.2.0 #29 was merged to remove the `es6-promise` library from
