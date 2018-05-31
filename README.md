@@ -153,9 +153,6 @@ the returned promise will be rejected with the same. Valid `options` properties 
     - **connectTimeout**: Time in milliseconds to wait before giving up on a connection attempt. *(Deprecated: please
     use `options.imap.authTimeout` instead)*
 
-- **ImapSimple**(<*object*> imap) - *ImapSimple* - constructor for creating an instance of ImapSimple. Mostly used for
-testing.
-
 - **errors.ConnectionTimeoutError**(<*number*> timeout) - *ConnectionTimeoutError* - Error thrown when a connection
 attempt has timed out.
 
@@ -163,7 +160,46 @@ attempt has timed out.
 objects that describe the structure of the different parts of the message's body. Useful for getting a simple list to
 iterate for the purposes of, for example, finding all attachments.
 
+- **ImapSimple**(<*object*> imap) - *ImapSimple* - constructor for creating an instance of ImapSimple. Mostly used for
+testing.
+
 ### ImapSimple class
+
+- **addFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Adds the provided
+flag(s) to the specified message(s). `uid` is the *uid* of the message you want to add the flag to or an array of
+*uids*. `flag` is either a string or array of strings indicating the flags to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+- **addMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Adds the provided
+label(s) to the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
+to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+- **append**(<*mixed*> message, [<*object*> options], [<*function*> callback]) - *Promise* - Appends the argument
+message to the currently open mailbox or another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options`
+are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or resolves 
+the returned promise.
+
+- **delFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Removes the provided
+flag(s) from the specified message(s). `uid` is the *uid* of the message you want to remove the flag from or an array of
+*uids*. `flag` is either a string or array of strings indicating the flags to remove. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+- **end**() - *undefined* - Close the connection to the imap server.
+
+- **getBoxes**([<*function*> callback]) - *Promise* - Returns the full list of mailboxes (folders). Upon success, either
+the provided callback will be called with signature `(err, boxes)`, or the returned promise will be resolved with `boxes`.
+`boxes` is the exact object returned from the node-imap *getBoxes()* result.
+  
+- **getPartData**(<*object*> message, <*object*> part, [<*function*> callback]) - *Promise* - Downloads part data
+(which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
+with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
+decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
+
+- **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
+message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
+specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
+resolves the returned promise.
 
 - **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox, calling the provided callback
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
@@ -183,43 +219,10 @@ body is automatically parsed into an object.
         //  }, ...]
     ```
 
-- **end**() - *undefined* - Close the connection to the imap server.
-
-- **getPartData**(<*object*> message, <*object*> part, [<*function*> callback]) - *Promise* - Downloads part data
-(which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
-with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
-decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
-
-- **addMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Adds the provided
-label(s) to the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
-to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
-the provided callback with signature `(err)`, or resolves the returned promise.
-
-- **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
-message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
-specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
-resolves the returned promise.
-
-- **append**(<*mixed*> message, [<*object*> options], [<*function*> callback]) - *Promise* - Appends the argument
-message to the currently open mailbox or another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options` are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or
-resolves the returned promise.
-
-- **addFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Adds the provided
-flag(s) to the specified message(s). `uid` is the *uid* of the message you want to add the flag to or an array of
-*uids*. `flag` is either a string or array of strings indicating the flags to add. When completed, either calls
-the provided callback with signature `(err)`, or resolves the returned promise.
-
-- **delFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Removes the provided
-flag(s) from the specified message(s). `uid` is the *uid* of the message you want to remove the flag from or an array of
-*uids*. `flag` is either a string or array of strings indicating the flags to remove. When completed, either calls
-the provided callback with signature `(err)`, or resolves the returned promise.
-
 ## Server events
 Functions to listen to server events are configured in the configuration object that is passed to the `connect` function.
-The
-ImapSimple only implements a subset of the server event functions *node-imap* supports
-,[see here](https://github.com/mscdex/node-imap#connection-events), which are `mail`, `expunge` and `update`.
-Add them to the configuration object as follows:
+ImapSimple only implements a subset of the server event functions that *node-imap* supports, [see here](https://github.com/mscdex/node-imap#connection-events), 
+which are `mail`, `expunge` and `update`. Add them to the configuration object as follows:
 
 ```
 var config = {
