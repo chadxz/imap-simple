@@ -6,7 +6,7 @@
   "strict": true,
   "mocha": true,
   "predef": [
-    "-Promise"
+    "Promise"
   ],
   "globals": {
     "xit": true,
