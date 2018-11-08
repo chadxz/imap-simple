@@ -204,9 +204,11 @@ resolves the returned promise.
 - **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox, calling the provided callback
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
-- **addBox**(<*string*> boxName) - *Promise* - Create a mailbox, resolves the returned promise with `boxName`.
+- **addBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Create a mailbox, calling the provided callback
+with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
-- **delBox**(<*string*> boxName) - *Promise* - Delete a mailbox, resolves the returned promise with `boxName`.
+- **delBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Delete a mailbox, calling the provided callback
+with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **search**(<*object*> searchCriteria, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Search for and
 retrieve mail in the previously opened mailbox. The search is performed based on the provided `searchCriteria`, which is
