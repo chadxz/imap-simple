@@ -5,10 +5,8 @@
   "unused": true,
   "strict": true,
   "mocha": true,
-  "predef": [
-    "Promise"
-  ],
   "globals": {
+    "Promise": true,
     "xit": true,
     "xdescribe": true
   }

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.2.0 - 2018-11-08
+
+#### Added
+
+- #50 - @iaarnio
+    - Added `ImapSimple.prototype.addBox()` and `ImapSimple.prototype.delBox()`
+    as wrappers around the same-named functions in the underlying node-imap
+    library.
+
 ## 4.1.0 - 2018-05-31
 
 #### Added

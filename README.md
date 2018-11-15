@@ -233,7 +233,7 @@ the provided callback with signature `(err)`, or resolves the returned promise.
 
 - **append**(<*mixed*> message, [<*object*> options], [<*function*> callback]) - *Promise* - Appends the argument
 message to the currently open mailbox or another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options`
-are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or resolves 
+are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or resolves
 the returned promise.
 
 - **delFlags**(<*mixed*> uid, <*string*> flag, [<*function*> callback]) - *Promise* - Removes the provided
@@ -246,7 +246,7 @@ the provided callback with signature `(err)`, or resolves the returned promise.
 - **getBoxes**([<*function*> callback]) - *Promise* - Returns the full list of mailboxes (folders). Upon success, either
 the provided callback will be called with signature `(err, boxes)`, or the returned promise will be resolved with `boxes`.
 `boxes` is the exact object returned from the node-imap *getBoxes()* result.
-  
+
 - **getPartData**(<*object*> message, <*object*> part, [<*function*> callback]) - *Promise* - Downloads part data
 (which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
 with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
@@ -263,6 +263,12 @@ with signature `(err, boxName)`, or resolves the returned promise with `boxName`
 - **closeBox**(<*boolean*> autoExpunge, [<*function*> callback]) - *Promise* - Close a mailbox, calling the provided callback
 with signature `(err)`, or resolves the returned promise. If autoExpunge is true, any messages marked as Deleted in the currently 
 open mailbox will be removed.
+
+- **addBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Create a mailbox, calling the provided callback
+with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
+
+- **delBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Delete a mailbox, calling the provided callback
+with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **search**(<*object*> searchCriteria, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Search for and
 retrieve mail in the previously opened mailbox. The search is performed based on the provided `searchCriteria`, which is
@@ -281,7 +287,7 @@ body is automatically parsed into an object.
 
 ## Server events
 Functions to listen to server events are configured in the configuration object that is passed to the `connect` function.
-ImapSimple only implements a subset of the server event functions that *node-imap* supports, [see here](https://github.com/mscdex/node-imap#connection-events), 
+ImapSimple only implements a subset of the server event functions that *node-imap* supports, [see here](https://github.com/mscdex/node-imap#connection-events),
 which are `mail`, `expunge` and `update`. Add them to the configuration object as follows:
 
 ```
