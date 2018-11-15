@@ -260,7 +260,7 @@ resolves the returned promise.
 - **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox, calling the provided callback
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
-- **closeBox**(<*boolean*> autoExpunge, [<*function*> callback]) - *Promise* - Close a mailbox, calling the provided callback
+- **closeBox**(<*boolean*> [autoExpunge = true], [<*function*> callback]) - *Promise* - Close a mailbox, calling the provided callback
 with signature `(err)`, or resolves the returned promise. If autoExpunge is true, any messages marked as Deleted in the currently 
 open mailbox will be removed.
 
