@@ -1,6 +1,6 @@
 {
   "name": "imap-simple",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "Wrapper over node-imap, providing a simpler api for common use cases",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,8 @@
     "Maxiem <maxiemgeldhof@msn.com>",
     "Nate Watson <watsonn2013@my.fit.edu>",
     "Robert Vulpe <nytr0gen.george@gmail.com>",
-    "Tuomas Tanner"
+    "Tuomas Tanner",
+    "u2ros <urbernik@gmail.com>"
   ],
   "license": "MIT",
   "repository": {
