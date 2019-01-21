@@ -36,7 +36,8 @@
     "imap": "^0.8.18",
     "nodeify": "^1.0.0",
     "quoted-printable": "^1.0.0",
-    "utf8": "^2.1.1"
+    "utf8": "^2.1.1",
+    "uuencode": "0.0.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
