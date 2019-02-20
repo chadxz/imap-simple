@@ -211,7 +211,7 @@ with signature `(err, boxName)`, or resolves the returned promise with `boxName`
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **search**(<*object*> searchCriteria, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Search for and
-retrieve mail in the previously opened mailbox. The search is performed based on the provided `searchCriteria`, which is
+retrieve mail in the currently open mailbox. The search is performed based on the provided `searchCriteria`, which is
 the exact same format as [node-imap][] requires. All results will be subsequently downloaded, according to the options
 provided by `fetchOptions`, which are also identical to those passed to `fetch` of [node-imap][]. Upon a successful
 search+fetch operation, either the provided callback will be called with signature `(err, results)`, or the returned
