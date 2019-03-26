@@ -1,18 +1,30 @@
 'use strict';
+var imapServer = require('./testserver');
+var expect = require('chai').expect
 
-describe("imap-simple", function () {
+var serverInstance = null;
+beforeEach(function () {
+    return imapServer().then(function (server) {
+        serverInstance = server;
+    });
+});
+afterEach(function () {
+    serverInstance.close();
+});
+
+describe('imap-simple', function () {
     this.timeout(20000);
 
-    var imaps = require("../");
+    var imaps = require('../');
 
-    it("works", function () {
+    it('lists emails', function () {
         var config = {
             imap: {
-                user: 'FILL THIS IN',
-                password: 'FILL THIS IN',
-                host: 'imap.gmail.com',
-                port: 993,
-                tls: true,
+                user: 'testuser',
+                password: 'testpass',
+                host: 'localhost',
+                port: 1143,
+                tls: false,
                 authTimeout: 3000
             }
         };
@@ -36,9 +48,18 @@ describe("imap-simple", function () {
                         })[0].body.subject[0];
                     });
 
+                    expect(subjects).to.eql([
+                        "hello 1",
+                        "hello 3",
+                        "hello 4",
+                        "hello 5",
+                        "hello 6"
+                    ])
                     console.log(subjects);
                 });
             });
         });
+
     });
 });
+
