@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.3.0 - 2019-01-21
+
+- #53 - @u2ros
+    - Added support for `UUENCODE` encoded attachment part decoding.
+
 ## 4.2.0 - 2018-11-08
 
 #### Added

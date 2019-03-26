@@ -52,6 +52,79 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
+#### Retrieve Body Content
+```js
+var imaps = require('imap-simple');
+const _ = require('lodash');
+
+var config = {
+    imap: {
+        user: 'your@email.address',
+        password: 'yourpassword',
+        host: 'imap.gmail.com',
+        port: 993,
+        tls: true,
+        authTimeout: 3000
+    }
+};
+
+imaps.connect(config).then(function (connection) {
+    return connection.openBox('INBOX').then(function () {
+        var searchCriteria = ['1:5'];
+        var fetchOptions = {
+            bodies: ['HEADER', 'TEXT'],
+        };
+        return connection.search(searchCriteria, fetchOptions).then(function (messages) {
+            messages.forEach(function (item) {
+                var all = _.find(item.parts, { "which": "TEXT" })
+                var html = (Buffer.from(all.body, 'base64').toString('ascii'));
+                console.log(html)
+            });
+        });
+    });
+});
+
+```
+
+#### Usage of Mailparser in combination with imap-simple
+```js
+var imaps = require('imap-simple');
+const simpleParser = require('mailparser').simpleParser;
+const _ = require('lodash');
+
+var config = {
+    imap: {
+        user: 'your@email.address',
+        password: 'yourpassword',
+        host: 'imap.gmail.com',
+        port: 993,
+        tls: true,
+        authTimeout: 3000
+    }
+};
+
+imaps.connect(config).then(function (connection) {
+    return connection.openBox('INBOX').then(function () {
+        var searchCriteria = ['1:5'];
+        var fetchOptions = {
+            bodies: ['HEADER', 'TEXT', ''],
+        };
+        return connection.search(searchCriteria, fetchOptions).then(function (messages) {
+            messages.forEach(function (item) {
+                var all = _.find(item.parts, { "which": "" })
+                var id = item.attributes.uid;
+                var idHeader = "Imap-Id: "+id+"\r\n";
+                simpleParser(idHeader+all.body, (err, mail) => {
+                    // access to the whole mail object
+                    console.log(mail.subject)
+                    console.log(mail.html)
+                });
+            });
+        });
+    });
+});
+```
+
 #### Download all attachments from all unread email since yesterday
 
 ```js
@@ -189,12 +262,7 @@ imaps.connect(config).then(function (connection) {
         });
     });
 });
-
-
 ```
-
-
-
 
 ## API
 
@@ -271,7 +339,7 @@ with signature `(err, boxName)`, or resolves the returned promise with `boxName`
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **search**(<*object*> searchCriteria, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Search for and
-retrieve mail in the previously opened mailbox. The search is performed based on the provided `searchCriteria`, which is
+retrieve mail in the currently open mailbox. The search is performed based on the provided `searchCriteria`, which is
 the exact same format as [node-imap][] requires. All results will be subsequently downloaded, according to the options
 provided by `fetchOptions`, which are also identical to those passed to `fetch` of [node-imap][]. Upon a successful
 search+fetch operation, either the provided callback will be called with signature `(err, results)`, or the returned
