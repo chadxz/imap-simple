@@ -2,8 +2,14 @@
 var imapServer = require('./testserver');
 var expect = require('chai').expect
 
+var serverInstance = null;
 beforeEach(function () {
-    return imapServer()
+    return imapServer().then(function (server) {
+        serverInstance = server;
+    });
+});
+afterEach(function () {
+    serverInstance.close();
 });
 
 describe('imap-simple', function () {
@@ -47,7 +53,7 @@ describe('imap-simple', function () {
                         "hello 3",
                         "hello 4",
                         "hello 5",
-                        "hello 6",
+                        "hello 6"
                     ])
                     console.log(subjects);
                 });
@@ -56,3 +62,4 @@ describe('imap-simple', function () {
 
     });
 });
+

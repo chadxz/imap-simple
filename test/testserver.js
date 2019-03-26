@@ -70,7 +70,7 @@ var server = hoodiecrow({
 function start(){
     return new Promise(function (resolve, reject) {
         server.listen(1143, function () {
-            resolve();
+            resolve(server);
         });
     });
 }
