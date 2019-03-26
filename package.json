@@ -33,6 +33,7 @@
     "url": "https://github.com/chadxz/imap-simple.git"
   },
   "dependencies": {
+    "hoodiecrow-imap": "^2.1.0",
     "iconv-lite": "~0.4.13",
     "imap": "^0.8.18",
     "nodeify": "^1.0.0",
