@@ -270,6 +270,10 @@ the provided callback will be called with signature `(err, boxes)`, or the retur
 with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
 decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
 
+- **deleteMessage**(<*mixed*> uid, [<*function*> callback]) - *Promise* - Deletes the specified
+message(s).  `uid` is the *uid* of the message you want to add the flag to or an array of  *uids*.  
+When completed, either calls the provided callback with signature `(err)`, or resolves the returned promise.
+
 - **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
 message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
 specifies the messages to be moved. When completed, either calls the provided callback with signature `(err)`, or
