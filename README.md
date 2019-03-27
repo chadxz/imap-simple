@@ -353,6 +353,21 @@ body is automatically parsed into an object.
         //  }, ...]
     ```
 
+- **fetchMessages**(<*mixed*> uid,, [<*object*> fetchOptions], [<*function*> callback]) - *Promise* - Retrieve mail in 
+the currently open mailbox. `uid` is the *uid* of the message you want to add the flag to or an array of
+*uids*.  All results will be subsequently downloaded, according to the options
+provided by `fetchOptions`, which are also identical to those passed to `fetch` of [node-imap][]. Upon a successful
+fetch operation, either the provided callback will be called with signature `(err, results)`, or the returned
+promise will be resolved with `results`. The format of `results` is detailed below. See node-imap's *ImapMessage*
+signature for information about `attributes`, `which`, `size`, and `body`. For any message part that is a `HEADER`, the
+body is automatically parsed into an object.
+    ```js
+        // [{
+        //      attributes: object,
+        //      parts: [ { which: string, size: number, body: string }, ... ]
+        //  }, ...]
+    ```
+
 ## Server events
 Functions to listen to server events are configured in the configuration object that is passed to the `connect` function.
 ImapSimple only implements a subset of the server event functions that *node-imap* supports, [see here](https://github.com/mscdex/node-imap#connection-events),
