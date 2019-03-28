@@ -41,6 +41,7 @@
     "uuencode": "0.0.4"
   },
   "devDependencies": {
+    "hoodiecrow-imap": "^2.1.0",
     "chai": "^3.5.0",
     "istanbul": "^0.4.5",
     "jscs": "^3.0.7",

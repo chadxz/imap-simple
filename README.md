@@ -213,6 +213,56 @@ This is a test message
 });
 ```
 
+### Open messages and delete them
+
+```js
+
+imaps.connect(config).then(function (connection) {        
+    connection.openBox('INBOX').then(function () {
+    
+        var searchCriteria = ['ALL'];
+        var fetchOptions = { bodies: ['TEXT'], struct: true };
+        return connection.search(searchCriteria, fetchOptions);
+
+    //Loop over each message
+    }).then(function (messages) {
+        let taskList = messages.map(function (message) {
+            return new Promise((res, rej) => {
+                var parts = imaps.getParts(message.attributes.struct); 
+                parts.map(function (part) {
+                    return connection.getPartData(message, part)
+                    .then(function (partData) {
+                        
+                        //Display e-mail body
+                        if (part.disposition == null && part.encoding != "base64"){
+                            console.log(partData);
+                        }
+
+                        //Mark message for deletion
+                        connection.addFlags(message.attributes.uid, "\Deleted", (err) => {
+                            if (err){
+                                console.log('Problem marking message for deletion');
+                                rej(err);
+                            }
+
+                            res(); //Final resolve
+                        })
+                    });
+                });
+            });    
+        })
+
+        return Promise.all(taskList).then(() => {
+            connection.closeBox(true, (err) => { //Pass in false to avoid delete-flagged messages being removed
+                if (err){
+                    console.log(err);
+                }
+            });
+            connection.end();
+        });
+    });
+});
+```
 
 ## API
 
@@ -281,6 +331,10 @@ resolves the returned promise.
 
 - **openBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Open a mailbox, calling the provided callback
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
+
+- **closeBox**(<*boolean*> [autoExpunge = true], [<*function*> callback]) - *Promise* - Close a mailbox, calling the provided callback
+with signature `(err)`, or resolves the returned promise. If autoExpunge is true, any messages marked as Deleted in the currently 
+open mailbox will be removed.
 
 - **addBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Create a mailbox, calling the provided callback
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
