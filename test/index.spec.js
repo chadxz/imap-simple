@@ -1,5 +1,5 @@
 'use strict';
-var { startTestServer,appendMessage } = require('./imapTestServer');
+var {startTestServer, appendMessage} = require('./imapTestServer');
 var expect = require('chai').expect;
 
 var serverInstance = null;
@@ -65,6 +65,47 @@ describe('imap-simple', function () {
                 });
         });
 
+    });
+
+    it('deletes messages', function () {
+
+        return imaps.connect(config).then(function (connection) {
+
+            return connection.openBox('INBOX')
+                .then(function () {return appendMessage(connection, 'jim@example.com', 'hello from jim');})
+                .then(function () {return appendMessage(connection, 'bob@example.com', 'hello from bob');})
+                .then(function () {return appendMessage(connection, 'bob@example.com', 'hello again from bob');})
+                .then(function () {return connection.search(['ALL'], {bodies: ['HEADER']});})
+                .then(function (messages) {
+
+                    var uidsToDelete = messages
+                        .filter(function (message) {
+                            return message.parts.filter(function (part) {
+                                return part.which === 'HEADER';
+                            })[0].body.to[0] === 'bob@example.com';
+                        })
+                        .map(function (message) {
+                            return message.attributes.uid;
+                        });
+
+                    return connection.deleteMessage(uidsToDelete);
+                })
+                .then(function () {
+                    return connection.search(['ALL'], {bodies: ['HEADER']});
+                }).then(function (messages) {
+
+                    var subjects = messages.map(function (res) {
+                        return res.parts.filter(function (part) {
+                            return part.which === 'HEADER';
+                        })[0].body.subject[0];
+                    });
+
+                    expect(subjects).to.eql([
+                        'hello from jim'
+                    ]);
+                    console.log(subjects);
+                });
+        });
     });
 });
 

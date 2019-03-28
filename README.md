@@ -264,6 +264,29 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
+
+### delete messages by uid 
+
+```js
+imaps.connect(config).then(connection => {
+
+    return connection.openBox('INBOX')
+        .then(() => connection.search(['ALL'], {bodies: ['HEADER']}))
+        .then( messages => {
+
+            // select messages from bob
+            const uidsToDelete = messages
+                .filter( message => {
+                    return message.parts
+                    .filter( part => part.which === 'HEADER')[0].body.to[0] === 'bob@example.com';
+                })
+                .map(message => message.attributes.uid);
+
+            return connection.deleteMessage(uidsToDelete);
+        });
+});
+```
+
 ## API
 
 ### Exported module
