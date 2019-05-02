@@ -253,7 +253,7 @@ imaps.connect(config).then(function (connection) {
         })
 
         return Promise.all(taskList).then(() => {
-            connection.closeBox(true, (err) => { //Pass in false to avoid delete-flagged messages being removed
+            connection.imap.closeBox(true, (err) => { //Pass in false to avoid delete-flagged messages being removed
                 if (err){
                     console.log(err);
                 }
