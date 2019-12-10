@@ -294,7 +294,17 @@ flag(s) to the specified message(s). `uid` is the *uid* of the message you want 
 *uids*. `flag` is either a string or array of strings indicating the flags to add. When completed, either calls
 the provided callback with signature `(err)`, or resolves the returned promise.
 
+- **setMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Sets the provided
+label(s) to the specified message(s), overwritting any others before. `source` corresponds to a node-imap *MessageSource* which specifies the messages
+to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
 - **addMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Adds the provided
+label(s) to the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
+to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
+- **removeMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Removes the provided
 label(s) to the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
 to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
 the provided callback with signature `(err)`, or resolves the returned promise.
