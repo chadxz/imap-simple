@@ -2,16 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.0 - 2020-03-30
+
+#### Added
+
+- \#40 - @brbeaird
+    - Added wrapper for node-imap's `closeBox` with support for autoExpunge
+    - This change makes use of default parameters in javascript, which was first
+    supported in Node.js v6. Previously this library did not explicitly specify
+    what Node.js versions it supported, so using this opportunity to specify that
+    and bump major version to ensure it does not inadvertently break people.
+
+- \#60 - @synox
+    - Added `delete` which allows for deleting messages by uid.
+
 ## 4.3.0 - 2019-01-21
 
-- #53 - @u2ros
+#### Added
+
+- \#53 - @u2ros
     - Added support for `UUENCODE` encoded attachment part decoding.
 
 ## 4.2.0 - 2018-11-08
 
 #### Added
 
-- #50 - @iaarnio
+- \#50 - @iaarnio
     - Added `ImapSimple.prototype.addBox()` and `ImapSimple.prototype.delBox()`
     as wrappers around the same-named functions in the underlying node-imap
     library.
@@ -20,7 +36,7 @@ All notable changes to this project will be documented in this file.
 
 #### Added
 
-- #47 - @AurisAudentis
+- \#47 - @AurisAudentis
     - Added `ImapSimple.prototype.getBoxes()` as a wrapper around the same-named
     function in the underlying node-imap library.
 
@@ -43,7 +59,7 @@ Sorry :(
 
 #### Added
 
-- #41 - @jhannes
+- \#41 - @jhannes
     - Added wrapper function `append` on the connection object to append a message
     to a mailbox.
 
@@ -51,7 +67,7 @@ Sorry :(
 
 #### Added
 
-- #19 - @redpandatronicsuk
+- \#19 - @redpandatronicsuk
     - Added wrapper functions to add and delete flags from messages.
     - Added event listeners and corresponding options for listening for receiving
     new mails, message updates (such as flag changes) and external message delete

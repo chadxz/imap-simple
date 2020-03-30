@@ -1,6 +1,6 @@
 {
   "name": "imap-simple",
-  "version": "4.3.0",
+  "version": "5.0.0",
   "description": "Wrapper over node-imap, providing a simpler api for common use cases",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,8 @@
     "node-imap"
   ],
   "contributors": [
+    "Aravindo Wingeier <synox.github@dubgo.com>",
+    "Brian Beaird",
     "Bruce V. Schwartz <bruce@z2a.org>",
     "Chad McElligott <chad.mcelligott@gmail.com>",
     "Dominik Beste <dominik.beste@gmail.com>",
@@ -31,6 +33,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chadxz/imap-simple.git"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "dependencies": {
     "iconv-lite": "~0.4.13",
