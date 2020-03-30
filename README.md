@@ -264,6 +264,29 @@ imaps.connect(config).then(function (connection) {
 });
 ```
 
+
+### delete messages by uid 
+
+```js
+imaps.connect(config).then(connection => {
+
+    return connection.openBox('INBOX')
+        .then(() => connection.search(['ALL'], {bodies: ['HEADER']}))
+        .then( messages => {
+
+            // select messages from bob
+            const uidsToDelete = messages
+                .filter( message => {
+                    return message.parts
+                    .filter( part => part.which === 'HEADER')[0].body.to[0] === 'bob@example.com';
+                })
+                .map(message => message.attributes.uid);
+
+            return connection.deleteMessage(uidsToDelete);
+        });
+});
+```
+
 ## API
 
 ### Exported module
@@ -319,6 +342,10 @@ the provided callback will be called with signature `(err, boxes)`, or the retur
 (which is either part of the message body, or an attachment). Upon success, either the provided callback will be called
 with signature `(err, data)`, or the returned promise will be resolved with `data`. The data will be automatically
 decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
+
+- **deleteMessage**(<*mixed*> uid, [<*function*> callback]) - *Promise* - Deletes the specified
+message(s).  `uid` is the *uid* of the message you want to add the flag to or an array of  *uids*.  
+When completed, either calls the provided callback with signature `(err)`, or resolves the returned promise.
 
 - **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
 message(s) in the currently open mailbox to another mailbox. `source` corresponds to a node-imap *MessageSource* which
