@@ -322,6 +322,11 @@ label(s) to the specified message(s). `source` corresponds to a node-imap *Messa
 to be moved. `label` is either a string or array of strings indicating the labels to add. When completed, either calls
 the provided callback with signature `(err)`, or resolves the returned promise.
 
+- **removeMessageLabel**(<*mixed*> source, <*mixed*> label, [<*function*> callback]) - *Promise* - Removes the provided
+label(s) from the specified message(s). `source` corresponds to a node-imap *MessageSource* which specifies the messages
+to be removed. `label` is either a string or array of strings indicating the labels to remove. When completed, either calls
+the provided callback with signature `(err)`, or resolves the returned promise.
+
 - **append**(<*mixed*> message, [<*object*> options], [<*function*> callback]) - *Promise* - Appends the argument
 message to the currently open mailbox or another mailbox. `message` is a RFC-822 compatible MIME message. Valid `options`
 are *mailbox*, *flags* and *date*. When completed, either calls the provided callback with signature `(err)`, or resolves
