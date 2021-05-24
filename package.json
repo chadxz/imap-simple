@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha",
     "lint": "jscs . && jshint .",
-    "cover": "istanbul cover --report html _mocha"
+    "cover": "istanbul cover --report html _mocha",
+    "eslint": "eslint lib/**/*.js test/**/*.js",
+    "eslint:fix": "eslint --fix lib/**/*.js test/**/*.js"
   },
   "keywords": [
     "imap",
@@ -35,21 +37,24 @@
     "url": "https://github.com/chadxz/imap-simple.git"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=12"
   },
   "dependencies": {
-    "iconv-lite": "~0.4.13",
-    "imap": "^0.8.18",
-    "nodeify": "^1.0.0",
-    "quoted-printable": "^1.0.0",
-    "utf8": "^2.1.1",
+    "dotenv": "^10.0.0",
+    "iconv-lite": "^0.6.3",
+    "imap": "^0.8.19",
+    "nodeify": "^1.0.1",
+    "quoted-printable": "^1.0.1",
+    "utf8": "^3.0.0",
     "uuencode": "0.0.4"
   },
   "devDependencies": {
-    "hoodiecrow-imap": "^2.1.0",
     "chai": "^3.5.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.3",
+    "hoodiecrow-imap": "^2.1.0",
     "istanbul": "^0.4.5",
-    "jscs": "^3.0.7",
     "jshint": "^2.9.3",
     "mocha": "^3.1.0"
   }

@@ -3,3 +3,4 @@ npm-debug.log
 .idea
 coverage
 .DS_Store
+.env*
