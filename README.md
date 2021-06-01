@@ -1,5 +1,7 @@
 # imap-simple
 
+**This library is no longer maintained and has been archived.**
+
 A library providing a simpler interface for common use cases of [node-imap][], a robust imap client for node.js.
 
 **Warning**: This library is missing a great deal of functionality from node-imap. If you have functionality you would
@@ -217,9 +219,9 @@ This is a test message
 
 ```js
 
-imaps.connect(config).then(function (connection) {        
+imaps.connect(config).then(function (connection) {
     connection.openBox('INBOX').then(function () {
-    
+
         var searchCriteria = ['ALL'];
         var fetchOptions = { bodies: ['TEXT'], struct: true };
         return connection.search(searchCriteria, fetchOptions);
@@ -228,11 +230,11 @@ imaps.connect(config).then(function (connection) {
     }).then(function (messages) {
         let taskList = messages.map(function (message) {
             return new Promise((res, rej) => {
-                var parts = imaps.getParts(message.attributes.struct); 
+                var parts = imaps.getParts(message.attributes.struct);
                 parts.map(function (part) {
                     return connection.getPartData(message, part)
                     .then(function (partData) {
-                        
+
                         //Display e-mail body
                         if (part.disposition == null && part.encoding != "base64"){
                             console.log(partData);
@@ -249,7 +251,7 @@ imaps.connect(config).then(function (connection) {
                         })
                     });
                 });
-            });    
+            });
         })
 
         return Promise.all(taskList).then(() => {
@@ -265,7 +267,7 @@ imaps.connect(config).then(function (connection) {
 ```
 
 
-### delete messages by uid 
+### delete messages by uid
 
 ```js
 imaps.connect(config).then(connection => {
@@ -349,7 +351,7 @@ with signature `(err, data)`, or the returned promise will be resolved with `dat
 decoded based on its encoding. If the encoding of the part is not supported, an error will occur.
 
 - **deleteMessage**(<*mixed*> uid, [<*function*> callback]) - *Promise* - Deletes the specified
-message(s).  `uid` is the *uid* of the message you want to add the flag to or an array of  *uids*.  
+message(s).  `uid` is the *uid* of the message you want to add the flag to or an array of  *uids*.
 When completed, either calls the provided callback with signature `(err)`, or resolves the returned promise.
 
 - **moveMessage**(<*mixed*> source, <*string*> boxName, [<*function*> callback]) - *Promise* - Moves the specified
@@ -361,7 +363,7 @@ resolves the returned promise.
 with signature `(err, boxName)`, or resolves the returned promise with `boxName`.
 
 - **closeBox**(<*boolean*> [autoExpunge = true], [<*function*> callback]) - *Promise* - Close a mailbox, calling the provided callback
-with signature `(err)`, or resolves the returned promise. If autoExpunge is true, any messages marked as Deleted in the currently 
+with signature `(err)`, or resolves the returned promise. If autoExpunge is true, any messages marked as Deleted in the currently
 open mailbox will be removed.
 
 - **addBox**(<*string*> boxName, [<*function*> callback]) - *Promise* - Create a mailbox, calling the provided callback
