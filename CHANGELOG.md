@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 6.0.0 - 2021-06-01
+
+#### EOL
+
+- This library is no longer actively maintained. @chadxz no longer uses it and hasn't
+  for years. It has been archived on Github and deprecated on NPM. No replacement is
+  suggested. Good luck.
+
 ## 5.1.0 - 2021-06-01
 
 #### Added
